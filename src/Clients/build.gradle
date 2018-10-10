@@ -4,9 +4,19 @@ war {
   from 'Web'
   baseName='mrp'
 }
-
 dependencies {
 
-    compile "org.stagemonitor:stagemonitor-web-servlet:0.88.8"
+	compile project(":stagemonitor-tracing")
+
+	compile project(":stagemonitor-jvm")
+
+	compile project(":stagemonitor-jdbc")
+}
+
+task exportWidget(type: JavaExec) {
+
+	classpath sourceSets.test.runtimeClasspath
+
+	main = "org.stagemonitor.web.servlet.filter.HttpRequestMonitorFilterTest"
 
 }
